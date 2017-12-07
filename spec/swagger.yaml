@@ -22,6 +22,8 @@ paths:
       responses:
         200:
           description: "OK"
+          schema:
+            $ref: "#/definitions/Tournament"
         400:
           description: "invalid value provided"
           schema:
