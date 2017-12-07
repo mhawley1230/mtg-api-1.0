@@ -20,8 +20,9 @@
         "responses" : {
           "200" : {
             "description" : "OK",
-            "schema" : {
-              "items" : {
+            "type" : "array",
+            "items" : {
+              "schema" : {
                 "$ref" : "#/definitions/Tournament"
               }
             }
@@ -44,33 +45,35 @@
           "description" : "event description",
           "required" : true,
           "schema" : {
-            "type" : "object",
-            "required" : [ "name", "format", "location", "date", "decks" ],
-            "properties" : {
-              "name" : {
-                "type" : "string",
-                "description" : "event name",
-                "example" : "Friday Night Magic"
-              },
-              "format" : {
-                "type" : "string",
-                "description" : "event format",
-                "example" : "Standard"
-              },
-              "location" : {
-                "type" : "string",
-                "description" : "event location",
-                "example" : "Boston, MA"
-              },
-              "date" : {
-                "type" : "string",
-                "description" : "event date",
-                "example" : "12/30/2017"
-              },
-              "decks" : {
-                "type" : "array",
-                "items" : {
-                  "$ref" : "#/definitions/Tournament"
+            "type" : "array",
+            "items" : {
+              "required" : [ "name", "format", "location", "date", "decks" ],
+              "properties" : {
+                "name" : {
+                  "type" : "string",
+                  "description" : "event name",
+                  "example" : "Friday Night Magic"
+                },
+                "format" : {
+                  "type" : "string",
+                  "description" : "event format",
+                  "example" : "Standard"
+                },
+                "location" : {
+                  "type" : "string",
+                  "description" : "event location",
+                  "example" : "Boston, MA"
+                },
+                "date" : {
+                  "type" : "string",
+                  "description" : "event date",
+                  "example" : "12/30/2017"
+                },
+                "decks" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/definitions/Tournament"
+                  }
                 }
               }
             }
@@ -425,7 +428,7 @@
   },
   "definitions" : {
     "Tournament" : {
-      "type" : "array",
+      "type" : "object",
       "required" : [ "id", "name", "format", "no_of_players", "location", "date", "decks" ],
       "properties" : {
         "id" : {
