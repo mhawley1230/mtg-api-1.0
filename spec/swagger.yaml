@@ -350,6 +350,48 @@ definitions:
         type: "array"
         items:
           $ref: "#/definitions/Deck"
+    example:
+      date: "12/30/2017"
+      name: "Friday Night Magic"
+      format: "Standard"
+      no_of_players: 200
+      location: "Boston, MA"
+      decks:
+      - cards:
+        - image_url: "http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=420589&type=card"
+          name: "Torrential Gearhulk"
+          no_played: 3
+          id: 315
+          main_deck: true
+          colors: "Blue"
+        - image_url: "http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=420589&type=card"
+          name: "Torrential Gearhulk"
+          no_played: 3
+          id: 315
+          main_deck: true
+          colors: "Blue"
+        name: "UR Control"
+        id: 256
+        placing: 1
+        player: "Luis Scott-Vargas"
+      - cards:
+        - image_url: "http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=420589&type=card"
+          name: "Torrential Gearhulk"
+          no_played: 3
+          id: 315
+          main_deck: true
+          colors: "Blue"
+        - image_url: "http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=420589&type=card"
+          name: "Torrential Gearhulk"
+          no_played: 3
+          id: 315
+          main_deck: true
+          colors: "Blue"
+        name: "UR Control"
+        id: 256
+        placing: 1
+        player: "Luis Scott-Vargas"
+      id: 222
   Deck:
     type: "object"
     required:
@@ -375,6 +417,24 @@ definitions:
         type: "array"
         items:
           $ref: "#/definitions/Card"
+    example:
+      cards:
+      - image_url: "http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=420589&type=card"
+        name: "Torrential Gearhulk"
+        no_played: 3
+        id: 315
+        main_deck: true
+        colors: "Blue"
+      - image_url: "http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=420589&type=card"
+        name: "Torrential Gearhulk"
+        no_played: 3
+        id: 315
+        main_deck: true
+        colors: "Blue"
+      name: "UR Control"
+      id: 256
+      placing: 1
+      player: "Luis Scott-Vargas"
   Card:
     type: "object"
     required:
@@ -403,6 +463,13 @@ definitions:
       main_deck:
         type: "boolean"
         example: true
+    example:
+      image_url: "http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=420589&type=card"
+      name: "Torrential Gearhulk"
+      no_played: 3
+      id: 315
+      main_deck: true
+      colors: "Blue"
   inline_response_400:
     properties:
       status:
@@ -460,6 +527,50 @@ definitions:
         description: "status code"
       result:
         $ref: "#/definitions/Tournament"
+    example:
+      result:
+        date: "12/30/2017"
+        name: "Friday Night Magic"
+        format: "Standard"
+        no_of_players: 200
+        location: "Boston, MA"
+        decks:
+        - cards:
+          - image_url: "http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=420589&type=card"
+            name: "Torrential Gearhulk"
+            no_played: 3
+            id: 315
+            main_deck: true
+            colors: "Blue"
+          - image_url: "http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=420589&type=card"
+            name: "Torrential Gearhulk"
+            no_played: 3
+            id: 315
+            main_deck: true
+            colors: "Blue"
+          name: "UR Control"
+          id: 256
+          placing: 1
+          player: "Luis Scott-Vargas"
+        - cards:
+          - image_url: "http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=420589&type=card"
+            name: "Torrential Gearhulk"
+            no_played: 3
+            id: 315
+            main_deck: true
+            colors: "Blue"
+          - image_url: "http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=420589&type=card"
+            name: "Torrential Gearhulk"
+            no_played: 3
+            id: 315
+            main_deck: true
+            colors: "Blue"
+          name: "UR Control"
+          id: 256
+          placing: 1
+          player: "Luis Scott-Vargas"
+        id: 222
+      status: 200
   inline_response_200_1:
     properties:
       status:
@@ -468,10 +579,49 @@ definitions:
         description: "status code"
       result:
         $ref: "#/definitions/Deck"
+    example:
+      result:
+        cards:
+        - image_url: "http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=420589&type=card"
+          name: "Torrential Gearhulk"
+          no_played: 3
+          id: 315
+          main_deck: true
+          colors: "Blue"
+        - image_url: "http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=420589&type=card"
+          name: "Torrential Gearhulk"
+          no_played: 3
+          id: 315
+          main_deck: true
+          colors: "Blue"
+        name: "UR Control"
+        id: 256
+        placing: 1
+        player: "Luis Scott-Vargas"
+      status: 200
   inline_response_200_2:
     properties:
       result:
         $ref: "#/definitions/Deck"
+    example:
+      result:
+        cards:
+        - image_url: "http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=420589&type=card"
+          name: "Torrential Gearhulk"
+          no_played: 3
+          id: 315
+          main_deck: true
+          colors: "Blue"
+        - image_url: "http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=420589&type=card"
+          name: "Torrential Gearhulk"
+          no_played: 3
+          id: 315
+          main_deck: true
+          colors: "Blue"
+        name: "UR Control"
+        id: 256
+        placing: 1
+        player: "Luis Scott-Vargas"
   inline_response_200_3:
     properties:
       status:
@@ -480,10 +630,27 @@ definitions:
         description: "status code"
       result:
         $ref: "#/definitions/Card"
+    example:
+      result:
+        image_url: "http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=420589&type=card"
+        name: "Torrential Gearhulk"
+        no_played: 3
+        id: 315
+        main_deck: true
+        colors: "Blue"
+      status: 200
   inline_response_200_4:
     properties:
       result:
         $ref: "#/definitions/Card"
+    example:
+      result:
+        image_url: "http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=420589&type=card"
+        name: "Torrential Gearhulk"
+        no_played: 3
+        id: 315
+        main_deck: true
+        colors: "Blue"
 responses:
   400Response:
     description: "invalid value provided"
