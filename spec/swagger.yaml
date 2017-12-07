@@ -318,7 +318,6 @@ paths:
             $ref: "#/definitions/inline_response_404"
 definitions:
   Tournament:
-    type: "object"
     required:
     - "date"
     - "decks"
