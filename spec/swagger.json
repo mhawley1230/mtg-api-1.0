@@ -21,8 +21,9 @@
           "200" : {
             "description" : "OK",
             "schema" : {
-              "type" : "array",
-              "$ref" : "#/definitions/Tournament"
+              "items" : {
+                "$ref" : "#/definitions/Tournament"
+              }
             }
           },
           "400" : {
@@ -424,6 +425,7 @@
   },
   "definitions" : {
     "Tournament" : {
+      "type" : "array",
       "required" : [ "id", "name", "format", "no_of_players", "location", "date", "decks" ],
       "properties" : {
         "id" : {
