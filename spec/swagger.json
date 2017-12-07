@@ -20,7 +20,6 @@
         "responses" : {
           "200" : {
             "description" : "OK",
-            "type" : "object",
             "schema" : {
               "$ref" : "#/definitions/Tournament"
             }
