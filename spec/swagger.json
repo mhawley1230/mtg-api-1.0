@@ -424,7 +424,6 @@
   },
   "definitions" : {
     "Tournament" : {
-      "type" : "object",
       "required" : [ "id", "name", "format", "no_of_players", "location", "date", "decks" ],
       "properties" : {
         "id" : {
