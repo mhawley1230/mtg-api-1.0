@@ -20,11 +20,9 @@
         "responses" : {
           "200" : {
             "description" : "OK",
-            "type" : "array",
-            "items" : {
-              "schema" : {
-                "$ref" : "#/definitions/Tournament"
-              }
+            "type" : "object",
+            "schema" : {
+              "$ref" : "#/definitions/Tournament"
             }
           },
           "400" : {
