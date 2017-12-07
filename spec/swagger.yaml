@@ -22,8 +22,6 @@ paths:
       responses:
         200:
           description: "OK"
-          schema:
-            $ref: "#/definitions/Tournament"
         400:
           description: "invalid value provided"
           schema:
@@ -318,14 +316,6 @@ paths:
             $ref: "#/definitions/inline_response_404"
 definitions:
   Tournament:
-    required:
-    - "date"
-    - "decks"
-    - "format"
-    - "id"
-    - "location"
-    - "name"
-    - "no_of_players"
     properties:
       id:
         type: "integer"
@@ -349,48 +339,7 @@ definitions:
         type: "array"
         items:
           $ref: "#/definitions/Deck"
-    example:
-      date: "12/30/2017"
-      name: "Friday Night Magic"
-      format: "Standard"
-      no_of_players: 200
-      location: "Boston, MA"
-      decks:
-      - cards:
-        - image_url: "http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=420589&type=card"
-          name: "Torrential Gearhulk"
-          no_played: 3
-          id: 315
-          main_deck: true
-          colors: "Blue"
-        - image_url: "http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=420589&type=card"
-          name: "Torrential Gearhulk"
-          no_played: 3
-          id: 315
-          main_deck: true
-          colors: "Blue"
-        name: "UR Control"
-        id: 256
-        placing: 1
-        player: "Luis Scott-Vargas"
-      - cards:
-        - image_url: "http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=420589&type=card"
-          name: "Torrential Gearhulk"
-          no_played: 3
-          id: 315
-          main_deck: true
-          colors: "Blue"
-        - image_url: "http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=420589&type=card"
-          name: "Torrential Gearhulk"
-          no_played: 3
-          id: 315
-          main_deck: true
-          colors: "Blue"
-        name: "UR Control"
-        id: 256
-        placing: 1
-        player: "Luis Scott-Vargas"
-      id: 222
+    type: "array"
   Deck:
     type: "object"
     required:
@@ -527,48 +476,7 @@ definitions:
       result:
         $ref: "#/definitions/Tournament"
     example:
-      result:
-        date: "12/30/2017"
-        name: "Friday Night Magic"
-        format: "Standard"
-        no_of_players: 200
-        location: "Boston, MA"
-        decks:
-        - cards:
-          - image_url: "http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=420589&type=card"
-            name: "Torrential Gearhulk"
-            no_played: 3
-            id: 315
-            main_deck: true
-            colors: "Blue"
-          - image_url: "http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=420589&type=card"
-            name: "Torrential Gearhulk"
-            no_played: 3
-            id: 315
-            main_deck: true
-            colors: "Blue"
-          name: "UR Control"
-          id: 256
-          placing: 1
-          player: "Luis Scott-Vargas"
-        - cards:
-          - image_url: "http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=420589&type=card"
-            name: "Torrential Gearhulk"
-            no_played: 3
-            id: 315
-            main_deck: true
-            colors: "Blue"
-          - image_url: "http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=420589&type=card"
-            name: "Torrential Gearhulk"
-            no_played: 3
-            id: 315
-            main_deck: true
-            colors: "Blue"
-          name: "UR Control"
-          id: 256
-          placing: 1
-          player: "Luis Scott-Vargas"
-        id: 222
+      result: ""
       status: 200
   inline_response_200_1:
     properties:
