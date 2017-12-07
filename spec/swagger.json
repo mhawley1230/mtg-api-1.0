@@ -1,0 +1,562 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "version" : "1.0.0",
+    "title" : "MtG API",
+    "description" : "pull and post events and top 8 decklists"
+  },
+  "tags" : [ {
+    "name" : "tournaments"
+  }, {
+    "name" : "decks"
+  }, {
+    "name" : "cards"
+  } ],
+  "paths" : {
+    "/tournaments" : {
+      "get" : {
+        "tags" : [ "tournaments" ],
+        "description" : "Allow users to get events",
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "type" : "array",
+              "$ref" : "#/definitions/Tournament"
+            }
+          },
+          "400" : {
+            "$ref" : "#/responses/400Response"
+          },
+          "404" : {
+            "$ref" : "#/responses/404Response"
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "tournaments" ],
+        "summary" : "Allows users to post events with top 8 decklists and card info",
+        "description" : "Allows users to post events data",
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "name",
+          "description" : "event description",
+          "required" : true,
+          "schema" : {
+            "type" : "object",
+            "required" : [ "name", "format", "location", "date", "decks" ],
+            "properties" : {
+              "name" : {
+                "type" : "string",
+                "description" : "event name",
+                "example" : "Friday Night Magic"
+              },
+              "format" : {
+                "type" : "string",
+                "description" : "event format",
+                "example" : "Standard"
+              },
+              "location" : {
+                "type" : "string",
+                "description" : "event location",
+                "example" : "Boston, MA"
+              },
+              "date" : {
+                "type" : "string",
+                "description" : "event date",
+                "example" : "12/30/2017"
+              },
+              "decks" : {
+                "type" : "array",
+                "items" : {
+                  "$ref" : "#/definitions/Tournament"
+                }
+              }
+            }
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "event successfully posted",
+            "schema" : {
+              "$ref" : "#/definitions/Tournament"
+            }
+          },
+          "400" : {
+            "$ref" : "#/responses/400Response"
+          }
+        }
+      }
+    },
+    "/tournaments/{id}" : {
+      "get" : {
+        "tags" : [ "tournaments" ],
+        "description" : "Allows users to search for an event by id",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "path",
+          "name" : "id",
+          "type" : "integer",
+          "required" : true,
+          "description" : "event id"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "search results matching query",
+            "schema" : {
+              "type" : "object",
+              "properties" : {
+                "status" : {
+                  "type" : "integer",
+                  "description" : "status code",
+                  "example" : 200
+                },
+                "result" : {
+                  "$ref" : "#/definitions/Tournament"
+                }
+              }
+            }
+          },
+          "400" : {
+            "$ref" : "#/responses/400Response"
+          },
+          "404" : {
+            "$ref" : "#/responses/404Response"
+          }
+        }
+      }
+    },
+    "/tournaments/findByName" : {
+      "get" : {
+        "tags" : [ "tournaments" ],
+        "summary" : "Allows users to find events by name of event",
+        "parameters" : [ {
+          "name" : "name",
+          "in" : "query",
+          "type" : "string",
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successfully found resource",
+            "schema" : {
+              "$ref" : "#/definitions/Tournament"
+            }
+          },
+          "400" : {
+            "$ref" : "#/responses/400Response"
+          },
+          "404" : {
+            "$ref" : "#/responses/404Response"
+          }
+        }
+      }
+    },
+    "/decks" : {
+      "get" : {
+        "tags" : [ "decks" ],
+        "description" : "Allow users to get decks",
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "$ref" : "#/definitions/Deck"
+            }
+          },
+          "400" : {
+            "$ref" : "#/responses/400Response"
+          },
+          "404" : {
+            "$ref" : "#/responses/404Response"
+          }
+        }
+      }
+    },
+    "/decks/{id}" : {
+      "get" : {
+        "tags" : [ "decks" ],
+        "description" : "Allows users to search for an event by id",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "path",
+          "name" : "id",
+          "type" : "integer",
+          "required" : true,
+          "description" : "event id"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "search results matching query",
+            "schema" : {
+              "type" : "object",
+              "properties" : {
+                "status" : {
+                  "type" : "integer",
+                  "description" : "status code",
+                  "example" : 200
+                },
+                "result" : {
+                  "$ref" : "#/definitions/Deck"
+                }
+              }
+            }
+          },
+          "400" : {
+            "$ref" : "#/responses/400Response"
+          },
+          "404" : {
+            "$ref" : "#/responses/404Response"
+          }
+        }
+      }
+    },
+    "/decks/findByName" : {
+      "get" : {
+        "tags" : [ "decks" ],
+        "summary" : "Allows users to find decks by name",
+        "parameters" : [ {
+          "name" : "name",
+          "in" : "query",
+          "type" : "string",
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successfully found resource",
+            "schema" : {
+              "type" : "object",
+              "properties" : {
+                "result" : {
+                  "$ref" : "#/definitions/Deck"
+                }
+              }
+            }
+          },
+          "400" : {
+            "$ref" : "#/responses/400Response"
+          },
+          "404" : {
+            "$ref" : "#/responses/404Response"
+          }
+        }
+      }
+    },
+    "/decks/findByPlayer" : {
+      "get" : {
+        "tags" : [ "decks" ],
+        "summary" : "Allows users to find decks by player",
+        "parameters" : [ {
+          "name" : "player",
+          "in" : "query",
+          "type" : "string",
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successfully found resource",
+            "schema" : {
+              "type" : "object",
+              "properties" : {
+                "result" : {
+                  "$ref" : "#/definitions/Deck"
+                }
+              }
+            }
+          },
+          "400" : {
+            "$ref" : "#/responses/400Response"
+          },
+          "404" : {
+            "$ref" : "#/responses/404Response"
+          }
+        }
+      }
+    },
+    "/decks/findByPlacing" : {
+      "get" : {
+        "tags" : [ "decks" ],
+        "summary" : "Allows users to find decks by event placing",
+        "parameters" : [ {
+          "name" : "placing",
+          "in" : "query",
+          "type" : "integer",
+          "minimum" : 1,
+          "maximum" : 8,
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successfully found resource",
+            "schema" : {
+              "type" : "object",
+              "properties" : {
+                "result" : {
+                  "$ref" : "#/definitions/Deck"
+                }
+              }
+            }
+          },
+          "400" : {
+            "$ref" : "#/responses/400Response"
+          },
+          "404" : {
+            "$ref" : "#/responses/404Response"
+          }
+        }
+      }
+    },
+    "/cards" : {
+      "get" : {
+        "tags" : [ "cards" ],
+        "description" : "Allow users to get all cards",
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "$ref" : "#/definitions/Card"
+            }
+          },
+          "400" : {
+            "$ref" : "#/responses/400Response"
+          },
+          "404" : {
+            "$ref" : "#/responses/404Response"
+          }
+        }
+      }
+    },
+    "/cards/{id}" : {
+      "get" : {
+        "tags" : [ "cards" ],
+        "description" : "Allows users to search for an event by id",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "path",
+          "name" : "id",
+          "type" : "integer",
+          "required" : true,
+          "description" : "event id"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "search results matching query",
+            "schema" : {
+              "type" : "object",
+              "properties" : {
+                "status" : {
+                  "type" : "integer",
+                  "description" : "status code",
+                  "example" : 200
+                },
+                "result" : {
+                  "$ref" : "#/definitions/Card"
+                }
+              }
+            }
+          },
+          "400" : {
+            "$ref" : "#/responses/400Response"
+          },
+          "404" : {
+            "$ref" : "#/responses/404Response"
+          }
+        }
+      }
+    },
+    "/cards/findByName" : {
+      "get" : {
+        "tags" : [ "cards" ],
+        "summary" : "Allows users to find cards by name",
+        "parameters" : [ {
+          "name" : "name",
+          "in" : "query",
+          "type" : "string",
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successfully found resource",
+            "schema" : {
+              "type" : "object",
+              "properties" : {
+                "result" : {
+                  "$ref" : "#/definitions/Card"
+                }
+              }
+            }
+          },
+          "400" : {
+            "$ref" : "#/responses/400Response"
+          },
+          "404" : {
+            "$ref" : "#/responses/404Response"
+          }
+        }
+      }
+    },
+    "/cards/findByColors" : {
+      "get" : {
+        "tags" : [ "cards" ],
+        "summary" : "find by color(s)",
+        "parameters" : [ {
+          "in" : "query",
+          "name" : "color",
+          "required" : true,
+          "type" : "string",
+          "enum" : [ "white", "blue", "black", "green", "red", "colorless" ]
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successfully found resource",
+            "schema" : {
+              "$ref" : "#/definitions/Card"
+            }
+          },
+          "400" : {
+            "$ref" : "#/responses/400Response"
+          },
+          "404" : {
+            "$ref" : "#/responses/404Response"
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "Tournament" : {
+      "type" : "object",
+      "required" : [ "id", "name", "format", "no_of_players", "location", "date", "decks" ],
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "example" : 222
+        },
+        "name" : {
+          "type" : "string",
+          "example" : "Friday Night Magic"
+        },
+        "format" : {
+          "type" : "string",
+          "example" : "Standard"
+        },
+        "no_of_players" : {
+          "type" : "integer",
+          "example" : 200
+        },
+        "location" : {
+          "type" : "string",
+          "example" : "Boston, MA"
+        },
+        "date" : {
+          "type" : "string",
+          "example" : "12/30/2017"
+        },
+        "decks" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Deck"
+          }
+        }
+      }
+    },
+    "Deck" : {
+      "type" : "object",
+      "required" : [ "id", "name", "placing", "player", "cards" ],
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "example" : 256
+        },
+        "name" : {
+          "type" : "string",
+          "example" : "UR Control"
+        },
+        "placing" : {
+          "type" : "integer",
+          "example" : 1
+        },
+        "player" : {
+          "type" : "string",
+          "example" : "Luis Scott-Vargas"
+        },
+        "cards" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Card"
+          }
+        }
+      }
+    },
+    "Card" : {
+      "type" : "object",
+      "required" : [ "id", "name", "no_played", "colors", "image_url", "main_deck" ],
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "example" : 315
+        },
+        "name" : {
+          "type" : "string",
+          "example" : "Torrential Gearhulk"
+        },
+        "no_played" : {
+          "type" : "integer",
+          "example" : 3
+        },
+        "colors" : {
+          "type" : "string",
+          "example" : "Blue"
+        },
+        "image_url" : {
+          "type" : "string",
+          "example" : "http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=420589&type=card"
+        },
+        "main_deck" : {
+          "type" : "boolean",
+          "example" : true
+        }
+      }
+    }
+  },
+  "responses" : {
+    "400Response" : {
+      "description" : "invalid value provided",
+      "schema" : {
+        "type" : "object",
+        "properties" : {
+          "status" : {
+            "type" : "integer",
+            "description" : "status code",
+            "example" : 400
+          },
+          "message" : {
+            "type" : "string",
+            "description" : "status message string",
+            "example" : "Invalid value provided"
+          }
+        }
+      }
+    },
+    "404Response" : {
+      "description" : "resource not found",
+      "schema" : {
+        "type" : "object",
+        "properties" : {
+          "status" : {
+            "type" : "integer",
+            "description" : "status code",
+            "example" : 404
+          },
+          "message" : {
+            "type" : "string",
+            "description" : "status string",
+            "example" : "Resource not found"
+          }
+        }
+      }
+    }
+  },
+  "host" : "virtserver.swaggerhub.com",
+  "basePath" : "/mhawley/mtg-tournaments/1.0.0",
+  "schemes" : [ "https" ]
+}
